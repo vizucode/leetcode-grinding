@@ -18,25 +18,9 @@ func (this *ParkingSystem) AddCar(carType int) bool {
 //     car type 3 == small
     
 //     kurangi satu jika slot parkir digunakan
-    switch carType {
-    case 1:
-        if this.ParkingSlot[0] > 0 {
-            this.ParkingSlot[0] -= 1
-            result = true
-        }
-        break
-    case 2:
-        if this.ParkingSlot[1] > 0 {
-            this.ParkingSlot[1] -= 1
-            result = true
-        }
-        break
-    case 3:
-        if this.ParkingSlot[2] > 0 {
-            this.ParkingSlot[2] -= 1
-            result = true
-        }
-        break
+    if this.ParkingSlot[carType -1] > 0{
+        this.ParkingSlot[carType -1] -= 1
+        result = true
     }
     return result
 }
