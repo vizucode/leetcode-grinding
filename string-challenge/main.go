@@ -4,32 +4,27 @@ import "fmt"
 
 func StringChallenge(str string) int {
 
-	// str to array
-	arrString := []string{}
+	lenStr := len(str)
+	hashmap := make(map[string]int)
+
 	for _, value := range str {
-		arrString = append(arrString, string(value))
+		hashmap[string(value)]++
 	}
 
-	// excetute
-	similarCounter := 1
-	for i := 1; i < len(arrString); i++ {
-		if arrString[i] == arrString[i-1] {
-			similarCounter++
-		} else {
-			// if different
-			arrString[i] = arrString[i+1]
-		}
+	if hashmap["a"] == lenStr || hashmap["b"] == lenStr || hashmap["c"] == lenStr {
+		return lenStr
 	}
 
-	if similarCounter == len(arrString) {
-		return similarCounter
+	if (hashmap["a"]%2) == (hashmap["a"]%2) && (hashmap["b"]%2) == (hashmap["c"]%2) {
+		return 2
 	}
 
-	// code goes here
-	return 0
+	return 1
 
 }
 
 func main() {
-	fmt.Println(StringChallenge("cbc"))
+	fmt.Println(StringChallenge("cbc"))    // 1
+	fmt.Println(StringChallenge("cccc"))   // 4
+	fmt.Println(StringChallenge("abcabc")) // ccabc -> cbbc -> bbc -> bb -> 2
 }
